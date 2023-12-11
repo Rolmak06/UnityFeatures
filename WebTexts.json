@@ -1,0 +1,22 @@
+{
+  "WebTextList": [
+    {
+      "OnlineText": {
+        "language": "en",
+        "text": "Hello, how are you today?"
+      }
+    },
+    {
+      "OnlineText": {
+        "language": "es",
+        "text": "Hola, ¿cómo estás hoy?"
+      }
+    },
+    {
+      "OnlineText": {
+        "language": "fr",
+        "text": "Bonjour, comment ça va aujourd'hui?"
+      }
+    }
+  ]
+}
