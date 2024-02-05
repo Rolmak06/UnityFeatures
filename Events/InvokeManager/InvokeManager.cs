@@ -5,7 +5,20 @@ using UnityEngine.Events;
 
 public class InvokeManager : MonoBehaviour
 {
-    [SerializeField, TextArea] string Note; // Field to add notes 
+    // Un script qui référence tous les colliders du zombie et ses animations selon les tags
+
+    //Lorsqu'un collider est touché, il envoie un événement au manager qui récupère le collider puis l'invoke associé 
+
+    // Collider
+    // Tag + invoke
+    // Tag + invoke
+
+    //Collider
+    //Tag + Invoke
+    //Tag + Invoke
+
+    [TextArea]
+    public string Note; //Pour ajouter des notes on sait jamais, ça peut être utile vu que ça risque d'être un gros script utilisé pour diverses choses. 
     
     [System.Serializable]
     public class TagInvoke
@@ -34,7 +47,7 @@ public class InvokeManager : MonoBehaviour
          }
     }
 
-    [SerializeField] List <TagInvoke> ColliderTagInvoke;
+    public List <TagInvoke> ColliderTagInvoke;
 
     void OnEnable(){
         foreach(TagInvoke item in ColliderTagInvoke){
@@ -44,6 +57,7 @@ public class InvokeManager : MonoBehaviour
             col.TagInvokes.Add(item); //On ajoute les TagInvoke au collider pour qu'il sache quoi regarder.
             col.tagList.AddRange(item.TagList); //On ajoute la liste des tags des différents invokes qui concernent le collider. 
             col.tagCount = col.tagList.Count;
+            //item.col.tagList = item.TagList;
     
             Debug.Log(col.name + "est setup avec les valeurs attribuées");
             }
@@ -52,8 +66,7 @@ public class InvokeManager : MonoBehaviour
 
 
     public void Hit(ColliderListener col)
-    { 
-        //On récupère le hit envoyé par le collider et on récupère l'event à jouer puis on l'invoke ! 
+    { //On récupère le hit envoyé par le collider et on récupère l'event à jouer puis on l'invoke ! 
         if(col.theOne.hasRun && col.theOne.runOnce){return;}
         if(!col.theOne.canRun){return;}
         col.theOne.InvokeTag();
