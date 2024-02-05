@@ -1,82 +1,61 @@
-﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class ColliderListener : MonoBehaviour
 {
+    [HideInInspector] public List<InvokeManager.TagInvoke> TagInvokes;
+    [HideInInspector] public InvokeManager.TagInvoke tagInvoke;
+    [HideInInspector] public InvokeManager Manager;
+    [HideInInspector] public int tagCount;
+    [HideInInspector] public List<string> tagList;
 
-// [HideInInspector]
-    public List<InvokeManager.TagInvoke> TagInvokes;
-// [HideInInspector]
-    public InvokeManager.TagInvoke theOne;
-
-// [HideInInspector]
-    public InvokeManager Manager;
-    
-    public int tagCount;
-
-// [HideInInspector]
-   public List<string> tagList;
-
-   public bool onCollision;
-
-   public bool onTrigger = true;
-   
-    //public List<string> tagList;
-    // Start is called before the first frame update
- 
+    [Tooltip("Is the listener sending message on Collision ?")] public bool onCollision;
+    [Tooltip("Is the listener sending message on Trigger ?")] public bool onTrigger = true;
     
     void OnTriggerEnter(Collider entity){
-         if(onTrigger){
-
-    for(int i = 0; i< tagCount; i++){
-
-    if (entity.gameObject.CompareTag(tagList[i])){ //Si un objet possède un tag de la liste on continue
-        Debug.Log("On compare avec " + tagList[i]);
-
-        foreach(InvokeManager.TagInvoke invoke in TagInvokes){ //On regarde les différents TagInvoke qui ont été attribué au collider 
-            for(int x = 0; x<invoke.TagList.Count; x++){
-                
-                if (entity.gameObject.CompareTag(invoke.TagList[x])){ //Si l'objet qui collide possède le tag défini par l'un des TagInvoke, on le définit comme le bon et on appelle son event. 
-
-                    theOne = invoke; //On choisit le bon invoke à jouer en fonction des tags. 
-                    if(!theOne.canRun){return;}
-                    Manager.Hit(this); //On appelle la fonction du Manager avec ce collider en paramètre. 
-                    string tag = invoke.TagList[x];
-                    Debug.Log(this.name + " Collide avec un objet taggué : " + tag);
-                }
-            }
+         if(onTrigger)
+        {
+            CheckForEvent(entity.gameObject);
         }
     }
-    }
-    }
+
+
+    void OnCollisionEnter(Collision entity)
+    {
+        if(onCollision)
+        {
+            CheckForEvent(entity.gameObject);
+        }
     }
 
-    void OnCollisionEnter(Collision entity){
-        if(onCollision){
-        for(int i = 0; i< tagCount; i++){
-
-            if (entity.gameObject.CompareTag(tagList[i])){ //Si un objet possède un tag de la liste on continue
+    /// <summary>
+    /// Checks if the entity gameobject is triggering an event. If so, we send a message to the manager.
+    /// </summary>
+    /// <param name="entity"></param>
+    private void CheckForEvent(GameObject entity)
+    {
+        for (int i = 0; i < tagCount; i++)
+        {
+            if (entity.gameObject.CompareTag(tagList[i]))
+            {
                 Debug.Log("On compare avec " + tagList[i]);
 
-                foreach(InvokeManager.TagInvoke invoke in TagInvokes){ //On regarde les différents TagInvoke qui ont été attribué au collider 
-                    for(int x = 0; x<invoke.TagList.Count; x++){
-                        
-                        if (entity.gameObject.CompareTag(invoke.TagList[x])){ //Si l'objet qui collide possède le tag défini par l'un des TagInvoke, on le définit comme le bon et on appelle son event. 
-
-                            theOne = invoke;
-                            if(!theOne.canRun){return;}
+                foreach (InvokeManager.TagInvoke invoke in TagInvokes)
+                {
+                    for (int x = 0; x < invoke.TagList.Count; x++)
+                    {
+                        if (entity.gameObject.CompareTag(invoke.TagList[x]))
+                        {
+                            tagInvoke = invoke;
+                            if (!tagInvoke.canRun) { return; }
                             Manager.Hit(this);
                             string tag = invoke.TagList[x];
                             Debug.Log(this.name + " Collide avec un objet taggué : " + tag);
                         }
-
                     }
                 }
             }
         }
     }
-}
 }
 
