@@ -13,10 +13,10 @@ public class TimedInvokes : MonoBehaviour
         public UnityEvent timedEvent;
     }
 
-    public List <TimedInvoke> timedEvents;
+    [SerializeField] List <TimedInvoke> timedEvents;
+    
+    [SerializeField, Tooltip("Does the timer starts when this gameobject is enabled ?")] bool onEnable = true;
 
-    public bool onEnable = true;
-    // Start is called before the first frame update
     void OnEnable()
     {
         if(!onEnable) {return;}
@@ -28,6 +28,7 @@ public class TimedInvokes : MonoBehaviour
 
     public void StartEvents()
     {
+        //Starts a timer foreach events listed in the script. Related Unity Events will be invoked.
         foreach(TimedInvoke events in timedEvents)
         {
             StartCoroutine(InvokeTimedEvents(events.wait, events.timedEvent));
