@@ -20,10 +20,7 @@ public class TimedInvokes : MonoBehaviour
     void OnEnable()
     {
         if(!onEnable) {return;}
-        foreach(TimedInvoke events in timedEvents)
-        {
-            StartCoroutine(InvokeTimedEvents(events.wait, events.timedEvent));
-        }
+        StartEvents();
     }
 
     public void StartEvents()
