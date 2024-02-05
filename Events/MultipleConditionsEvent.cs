@@ -20,6 +20,7 @@ public class MultipleConditionsEvent : MonoBehaviour
     [SerializeField] bool runOneTime = true;
     bool hasRun;
 
+    //Public function to set a condition true by index
     public void SetConditionTrue(int index)
     {
         if(conditions.Count < 1)
@@ -30,6 +31,7 @@ public class MultipleConditionsEvent : MonoBehaviour
         SetCondition(index, true);
     }
 
+    //Public function to set a condition true by condition name (string)
     public void SetConditionTrue(string name)
     {
         if(conditions.Count < 1)
@@ -47,6 +49,7 @@ public class MultipleConditionsEvent : MonoBehaviour
         }
     }
 
+    //Public function to set a condition false by string
     public void SetConditionFalse(string name)
     {
         if(conditions.Count < 1)
@@ -64,6 +67,7 @@ public class MultipleConditionsEvent : MonoBehaviour
         }
     }
 
+    //Public function to set a condition true by index
     public void SetConditionFalse(int index)
     {
         if(conditions.Count < 1)
@@ -74,14 +78,15 @@ public class MultipleConditionsEvent : MonoBehaviour
         SetCondition(index, false);
     }
 
+    //Public function to set a condition state by index 
     public void SetCondition(int index, bool state)
     {
         conditions[index].state = state;
         CheckConditions();
     }
 
-
-    public void CheckConditions()
+    // Check if conditions are fulfiled 
+    private void CheckConditions()
     {
         if(runOneTime && hasRun){return;}
 
