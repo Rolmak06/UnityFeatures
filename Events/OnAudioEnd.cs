@@ -5,10 +5,9 @@ using UnityEngine.Events;
 
 public class OnAudioEnd : MonoBehaviour
 {
-    public UnityEvent onAudioEnd;
-    public AudioSource source;
-
-    public bool hasStopped = false;
+    [SerializeField] UnityEvent onAudioEnd;
+    [SerializeField] AudioSource source;
+    [SerializeField] bool hasStopped = false;
 
     void Update()
     {
