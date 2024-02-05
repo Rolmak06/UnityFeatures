@@ -5,7 +5,7 @@ Avoiding repetitive scripting allows me to focus on enhancing those scripts and 
 ## [Damage System](DamageSystem)
 By using an interface, I've created a simple and yet robust health/damage framework. This showcase the practice of single-responsability and dependency inversion principles.
 
-## [Event System](Events)
+## [Unity Event System](Events)
 Based on Unity Callbacks and Unity Events, this little framework can be used to do quick and fast prototypes iterations. I mainly use this for modular staging or to crash test functionalities.
 
 ## [State Machine](StateMachine) 
