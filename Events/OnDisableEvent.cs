@@ -4,14 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class OnDisabler : MonoBehaviour
+public class OnDisableEvent : MonoBehaviour
 {
-   public UnityEvent DisableEvent;
-
+   public UnityEvent _onDisableEvent;
 
    void OnDisable()
    {
-        DisableEvent?.Invoke();
+       _onDisableEvent?.Invoke();
    }
 
 }
