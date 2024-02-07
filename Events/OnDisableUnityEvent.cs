@@ -6,11 +6,11 @@ using UnityEngine.Events;
 
 public class OnDisableEvent : MonoBehaviour
 {
-   public UnityEvent _onDisableEvent;
+   public UnityEvent _onDisableUnityEvent;
 
    void OnDisable()
    {
-       _onDisableEvent?.Invoke();
+       _onDisableUnityEvent?.Invoke();
    }
 
 }
