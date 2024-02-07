@@ -5,17 +5,7 @@ using UnityEngine.Events;
 
 public class InvokeManager : MonoBehaviour
 {
-    // Un script qui référence tous les colliders du zombie et ses animations selon les tags
-
     //Lorsqu'un collider est touché, il envoie un événement au manager qui récupère le collider puis l'invoke associé 
-
-    // Collider
-    // Tag + invoke
-    // Tag + invoke
-
-    //Collider
-    //Tag + Invoke
-    //Tag + Invoke
 
     [TextArea]
     public string Note; //Pour ajouter des notes on sait jamais, ça peut être utile vu que ça risque d'être un gros script utilisé pour diverses choses. 
