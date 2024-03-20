@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -57,26 +57,26 @@ public class InvokeManager : MonoBehaviour
 
     public void Hit(ColliderListener col)
     { //On récupère le hit envoyé par le collider et on récupère l'event à jouer puis on l'invoke ! 
-        if(col.theOne.hasRun && col.theOne.runOnce){return;}
-        if(!col.theOne.canRun){return;}
-        col.theOne.InvokeTag();
-        col.theOne.hasRun = true;
+        if(col.tagInvoke.hasRun && col.tagInvoke.runOnce){return;}
+        if(!col.tagInvoke.canRun){return;}
+        col.tagInvoke.InvokeTag();
+        col.tagInvoke.hasRun = true;
 
-        if(col.theOne.delay)
+        if(col.tagInvoke.delay)
         {
-        StartCoroutine(WaitBeforeLaunch(col.theOne));
+        StartCoroutine(WaitBeforeLaunch(col.tagInvoke));
         }
     }
 
-    private IEnumerator WaitBeforeLaunch(TagInvoke theOne)
+    private IEnumerator WaitBeforeLaunch(TagInvoke tagInvoke)
     {
         //float timeElapsed = 0f;
         
-        theOne.canRun = false;
+        tagInvoke.canRun = false;
         
-        yield return new WaitForSeconds(theOne.delayTime);
+        yield return new WaitForSeconds(tagInvoke.delayTime);
         
-        theOne.canRun = true;
+        tagInvoke.canRun = true;
     }
 
 }
