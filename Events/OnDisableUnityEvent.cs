@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class OnDisableEvent : MonoBehaviour
+public class OnDisableUnityEvent : MonoBehaviour
 {
    public UnityEvent _onDisableUnityEvent;
 
